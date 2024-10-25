@@ -4,5 +4,12 @@ export interface Pokemon
     name:string,
     type:string,
     isCool:boolean,
-    isStylish:boolean
+    isStylish:boolean,
+    acceptTerms:boolean
+}
+
+export interface PokemonType
+{
+    key:number,
+    value:string
 }

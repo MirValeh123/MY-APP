@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Pokemon } from '../../models/pokemon';
 import { PokemonDetailComponent } from "../pokemon-detail/pokemon-detail.component";
+import { PokemonService } from '../../sevices/pokemon.service';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -10,39 +11,24 @@ import { PokemonDetailComponent } from "../pokemon-detail/pokemon-detail.compone
   templateUrl: './pokemon-list.component.html',
   styleUrl: './pokemon-list.component.css'
 })
-export class PokemonListComponent {
+export class PokemonListComponent implements OnInit {
 
-  pokemons:Pokemon[] = [
-    {
-      id:1,
-      name:'pikachu',
-      type:'electric',
-      isCool:false,
-      isStylish:false
+  pokemons: Pokemon[] ;
 
-    },
-    {
-      id:2,
-      name:'squirtle',
-      type:'water',
-      isCool:false,
-      isStylish:false
+  constructor(private pokemonService: PokemonService) { }
 
-    },
-    {
-      id:3,
-      name:'charmander',
-      type:'fire',
-      isCool:false,
-      isStylish:false
+  ngOnInit(): void {
+    debugger;
+    
+    this.pokemonService.getPokemons().subscribe((data: Pokemon[]) => {
+      this.pokemons = data;
+    });
+    console.log(this.pokemons);
+  }
 
-    },
-  ]
+  handleRemove(event: Pokemon): void {
+    debugger;
 
-  handleRemove(event: Pokemon)
-  {
-    this.pokemons = this.pokemons.filter((pokemon: Pokemon)=>{
-      return pokemon.id !== event.id
-    })
+    this.pokemons = this.pokemons.filter(pokemon => pokemon.id !== event.id);
   }
 }

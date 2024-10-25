@@ -1,0 +1,31 @@
+<form #form="ngForm">
+    Pokemon Name:
+    <input type="text" [(ngModel)]="pokemon.name" name="name">
+    <label>
+        <input type="radio" name="isCool" [value]="true" #pokemonName="ngModel" [ngModel]="pokemon.isCool">Pokemon is
+        cool?
+    </label>
+    <label>
+        <input type="radio" name="isCool" [value]="false" [ngModel]="pokemon.isCool"
+            (ngModelChange)="toggleIsCool($event)">Pokemon is NOT cool?
+    </label>
+    <label>
+        <input type="checkbox" name="acceptedTerms" [(ngModel)]='pokemon.acceptTerms'> Please check to accept Terms
+    </label>
+    <br>
+    <label>
+        Pokemon Type:
+        <select name="pokemonType" [ngModel]="pokemonType.values">
+            <option *ngFor="let type of pokemonType" [value]="type.value" [selected]="type.value === pokemon.type">{{type.value}}</option>
+        </select>
+    </label>
+</form>
+<br><br>
+
+MODEL: {{pokemon | json}}
+<br><br>
+FORM: {{form.value | json}}
+<br><br>
+
+ERROR: <div *ngIf="!pokemonName.pristine">NOT PRISTINE IT IS DIRTY!</div>
+

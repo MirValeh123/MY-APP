@@ -1,13 +1,23 @@
 <table>
     <thead>
+      <tr>
         <th>Id</th>
         <th>Name</th>
         <th>Type</th>
+        <th>Action</th> <!-- For remove button -->
+      </tr>
     </thead>
-
+  
     <tbody>
-        <app-pokemon-detail *ngFor="let pokemon of pokemons"  [detail]="pokemon" (remove)="handleRemove($event)"></app-pokemon-detail>
-
+      <tr *ngFor="let pokemon of pokemons">
+        <td>{{ pokemon.id }}</td>
+        <td>{{ pokemon.name }}</td>
+        <td>{{ pokemon.type }}</td> <!-- Assuming 'type' is a property of Pokemon -->
+        <td>
+          <app-pokemon-detail [detail]="pokemon" (remove)="handleRemove($event)">
+          </app-pokemon-detail>
+        </td>
+      </tr>
     </tbody>
-
-</table>
+  </table>
+  

@@ -9,13 +9,16 @@ import { Pokemon } from '../../models/pokemon';
   styleUrl: './pokemon-detail.component.css'
 })
 export class PokemonDetailComponent implements OnInit {
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+
   @Input() detail!: Pokemon
   @Output() remove: EventEmitter<any> = new EventEmitter();
 
+
+  ngOnInit(): void {
+    // throw new Error('Method not implemented.');
+  }
   onRemove() {
+    debugger;
     this.remove.emit(this.detail);
   }
 }
